@@ -1,0 +1,17 @@
+<%- include("partials/header") %>
+<section class="hero">
+  <div><p class="eyebrow">BULHANDANG INTRANET</p><h1>반갑습니다, <%= user.name %>님.</h1><p>오늘의 조직 현황을 확인하세요.</p></div>
+  <span class="role"><%= user.role %></span>
+</section>
+<div class="grid stats">
+  <div class="card stat"><span>활성 조직원</span><strong><%= stats.members %></strong></div>
+  <div class="card stat"><span>오늘 출석</span><strong><%= stats.attendance %></strong></div>
+  <div class="card stat"><span>진행 중 기동타격대</span><strong><%= stats.strike %></strong></div>
+  <div class="card stat"><span>오늘 불야식</span><strong><%= stats.food %></strong></div>
+</div>
+<section class="card">
+  <div class="section-head"><h2>최근 공지</h2><a href="/notices">전체보기</a></div>
+  <% if (!notices.length) { %><p class="muted">등록된 공지가 없습니다.</p><% } %>
+  <% notices.forEach(n => { %><article class="notice-row"><div><h3><%= n.title %></h3><p><%= n.content %></p></div><small><%= n.author_name || "알 수 없음" %><br><%= new Date(n.created_at).toLocaleString("ko-KR") %></small></article><% }) %>
+</section>
+<%- include("partials/footer") %>

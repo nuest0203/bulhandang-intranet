@@ -1,0 +1,18 @@
+<%- include("partials/header") %>
+<h1>조직원 관리</h1>
+<% if (user.role === "ADMIN") { %>
+<section class="card">
+<h2>조직원 등록</h2>
+<form method="post" action="/members" class="form-grid">
+<input name="name" placeholder="이름" required>
+<input name="email" type="email" placeholder="이메일" required>
+<input name="password" type="password" placeholder="초기 비밀번호" required>
+<select name="role"><option>MEMBER</option><option>LEADER</option><option>ADMIN</option></select>
+<button class="primary">등록</button>
+</form>
+</section>
+<% } %>
+<section class="card table-wrap"><table><thead><tr><th>이름</th><th>이메일</th><th>권한</th><th>상태</th><th>관리</th></tr></thead><tbody>
+<% members.forEach(m => { %><tr><td><%= m.name %></td><td><%= m.email %></td><td><span class="badge"><%= m.role %></span></td><td><%= m.active ? "활성" : "비활성" %></td><td><% if (user.role==="ADMIN") { %><form method="post" action="/members/<%=m.id%>/toggle"><button class="small"><%=m.active?"비활성화":"활성화"%></button></form><% } %></td></tr><% }) %>
+</tbody></table></section>
+<%- include("partials/footer") %>

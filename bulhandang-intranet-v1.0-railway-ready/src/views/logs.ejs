@@ -1,0 +1,6 @@
+<%- include("partials/header") %>
+<h1>활동 로그</h1>
+<section class="card table-wrap"><table><thead><tr><th>시간</th><th>사용자</th><th>작업</th><th>상세</th><th>IP</th></tr></thead><tbody>
+<% logs.forEach(l=>{%><tr><td><%=new Date(l.created_at).toLocaleString("ko-KR")%></td><td><%=l.name||"-"%></td><td><%=l.action%></td><td><%=l.detail||""%></td><td><%=l.ip_address||""%></td></tr><%})%>
+</tbody></table></section>
+<%- include("partials/footer") %>

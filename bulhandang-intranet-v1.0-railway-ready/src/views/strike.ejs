@@ -1,0 +1,5 @@
+<%- include("partials/header") %>
+<h1>기동타격대</h1>
+<% if(user.role==="ADMIN"||user.role==="LEADER"){%><section class="card"><form method="post" action="/strike" class="form-grid"><input name="title" placeholder="작업 제목" required><input name="description" placeholder="설명"><select name="status"><option>OPEN</option><option>IN_PROGRESS</option><option>DONE</option></select><button class="primary">등록</button></form></section><%}%>
+<div class="grid"><% items.forEach(i=>{%><article class="card"><span class="badge"><%=i.status%></span><h2><%=i.title%></h2><p><%=i.description||""%></p><small>담당: <%=i.assignee_name||"미지정"%></small><% if(user.role==="ADMIN"||user.role==="LEADER"){%><form method="post" action="/strike/<%=i.id%>/status" class="inline"><select name="status"><option>OPEN</option><option>IN_PROGRESS</option><option>DONE</option></select><button class="small">변경</button></form><%}%></article><%})%></div>
+<%- include("partials/footer") %>

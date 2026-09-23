@@ -1,0 +1,7 @@
+<%- include("partials/header") %>
+<div class="section-head"><h1>공지사항</h1></div>
+<% if (user.role==="ADMIN" || user.role==="LEADER") { %>
+<section class="card"><form method="post" action="/notices"><input name="title" placeholder="공지 제목" required><textarea name="content" placeholder="공지 내용을 입력하세요" required></textarea><button class="primary">공지 등록</button></form></section>
+<% } %>
+<% notices.forEach(n => { %><article class="card notice"><div class="section-head"><h2><%=n.title%></h2><small><%=n.author_name||"알 수 없음"%> · <%=new Date(n.created_at).toLocaleString("ko-KR")%></small></div><p><%=n.content%></p><% if(user.role==="ADMIN"||user.role==="LEADER"){%><form method="post" action="/notices/<%=n.id%>/delete"><button class="danger small">삭제</button></form><%}%></article><% }) %>
+<%- include("partials/footer") %>

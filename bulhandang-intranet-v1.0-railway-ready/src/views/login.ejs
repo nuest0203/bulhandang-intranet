@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>로그인 · 불한당</title><link rel="stylesheet" href="/css/style.css"></head>
+<body class="login-page">
+  <div class="login-card">
+    <div class="logo">불한당</div>
+    <p class="muted">INTRANET</p>
+    <% if (error) { %><div class="alert"><%= error %></div><% } %>
+    <form method="post" action="/login">
+      <label>이메일<input type="email" name="email" required autocomplete="username"></label>
+      <label>비밀번호<input type="password" name="password" required autocomplete="current-password"></label>
+      <button class="primary wide">로그인</button>
+    </form>
+  </div>
+</body>
+</html>

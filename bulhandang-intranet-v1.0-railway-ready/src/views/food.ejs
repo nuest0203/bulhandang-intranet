@@ -1,0 +1,5 @@
+<%- include("partials/header") %>
+<h1>불야식</h1>
+<section class="card"><form method="post" action="/food" class="form-grid"><input name="title" placeholder="메뉴/제목" required><input name="description" placeholder="메뉴 설명"><input name="menu_date" type="date"><button class="primary">등록</button></form></section>
+<div class="grid"><% items.forEach(i=>{%><article class="card"><span class="badge"><%=i.menu_date.toISOString ? i.menu_date.toISOString().slice(0,10) : i.menu_date%></span><h2><%=i.title%></h2><p><%=i.description||""%></p><small>등록: <%=i.creator_name||"알 수 없음"%></small></article><%})%></div>
+<%- include("partials/footer") %>

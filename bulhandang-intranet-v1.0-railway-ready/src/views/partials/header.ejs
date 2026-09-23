@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= title %> · 불한당 인트라넷</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/">불한당 <span>INTRANET</span></a>
+  <% if (user) { %>
+  <nav>
+    <a href="/">대시보드</a>
+    <a href="/notices">공지사항</a>
+    <a href="/attendance">출석</a>
+    <a href="/strike">기동타격대</a>
+    <a href="/food">불야식</a>
+    <% if (user.role === "ADMIN" || user.role === "LEADER") { %><a href="/members">조직원</a><% } %>
+    <% if (user.role === "ADMIN") { %><a href="/logs">로그</a><% } %>
+  </nav>
+  <form method="post" action="/logout"><button class="logout">로그아웃</button></form>
+  <% } %>
+</header>
+<main class="container">

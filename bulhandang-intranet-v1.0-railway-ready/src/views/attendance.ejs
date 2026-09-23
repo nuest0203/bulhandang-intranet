@@ -1,0 +1,12 @@
+<%- include("partials/header") %>
+<h1>출석</h1>
+<section class="card">
+<h2>오늘 출석 체크</h2>
+<form method="post" action="/attendance" class="inline">
+<select name="status"><option value="PRESENT">출석</option><option value="LATE">지각</option><option value="EXCUSED">사유</option><option value="ABSENT">결석</option></select><button class="primary">저장</button>
+</form>
+</section>
+<section class="card table-wrap"><table><thead><tr><th>이름</th><th>이메일</th><th>상태</th><th>시간</th></tr></thead><tbody>
+<% records.forEach(r=>{%><tr><td><%=r.name%></td><td><%=r.email%></td><td><span class="badge"><%=r.status%></span></td><td><%=new Date(r.created_at).toLocaleString("ko-KR")%></td></tr><%})%>
+</tbody></table></section>
+<%- include("partials/footer") %>
